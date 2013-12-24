@@ -1,0 +1,102 @@
+diff --git a/sixmapp/app/controllers/stream_controller.rb b/sixmapp/app/controllers/stream_controller.rb
+index 627dcfb..f1bc237 100644
+--- a/sixmapp/app/controllers/stream_controller.rb
++++ b/sixmapp/app/controllers/stream_controller.rb
+@@ -8,7 +8,7 @@ class StreamController < ApplicationController
+   # GET /stream/index
+ 
+   def index
+-
++    @trends = @@stream.get_trends
+   end
+ 
+   #nil parameters result if the parameters weren't
+diff --git a/sixmapp/app/views/stream/index.html.erb b/sixmapp/app/views/stream/index.html.erb
+deleted file mode 100644
+index b9a782f..0000000
+--- a/sixmapp/app/views/stream/index.html.erb
++++ /dev/null
+@@ -1,60 +0,0 @@
+-<%= form_tag("/stream", :method => "get", class: "container text-center") do %> 
+-
+-  <!-- map -->
+-  <div class="rightCol" id="map">
+-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+-    <%= javascript_include_tag "map.js" %>   
+-  </div>
+-
+-
+-  <!-- search -->
+-  <div class="leftCol">
+-  <h2>Tweets About ...</h2>
+-  <div>
+-    <%= label_tag(:q, "keywords:") %>
+-    <%= text_field_tag(:keywords) %>
+-  </div>
+-  <div>
+-    <%= label_tag(:q, "exclude:") %>
+-    <%= text_field_tag(:exclude) %>
+-  </div>
+-  <div>
+-    <%= label_tag(:q, "language:") %>
+-    <select class="form-control" name="language">
+-      <option value="en">English</option>
+-      <option value="es">Spanish</option>
+-    </select>
+-  </div>
+-  <div>
+-    <%= label_tag(:q, "latitude:") %>
+-    <%= text_field_tag(:latitude) %>
+-    <%= label_tag(:q, "longitude:") %>
+-    <%= text_field_tag(:longitude) %>
+-    <%= label_tag(:q, "radius:") %>
+-    <%= text_field_tag(:radius) %>
+-  </div>
+-  <div>
+-    <input type="radio" name="distance" value="mi" checked>mile
+-    <input type="radio" name="distance" value="km">km 
+-
+-  </div>
+-
+-  <br/>
+-  <div>
+-    <%= submit_tag("Search", class: 'btn btn-primary') %>
+-  </div>
+-  <div>
+-    <%= @warning %>
+-  </div>
+-  </div>
+-
+-  
+-
+-  
+-
+-  </div>
+-<% end %>
+-
+-
+-<br />
+diff --git a/sixmapp/lib/stream_api.rb b/sixmapp/lib/stream_api.rb
+index 01fe618..c16db3f 100644
+--- a/sixmapp/lib/stream_api.rb
++++ b/sixmapp/lib/stream_api.rb
+@@ -7,6 +7,7 @@ class TweetStreamAPI
+   @@tweet_array = Array.new
+   @@keywords = ""
+   @@term1 = ""
++  US_WOEID = 23424977
+ 
+   Twitter.configure do |config|
+     config.consumer_key       = 'hIl8qNe1VqxKJuxHhWoA'
+@@ -15,6 +16,10 @@ class TweetStreamAPI
+     config.oauth_token_secret = 'w6hMGXVwNKCjL60jhEDXJs1nzhMP0r5Rmsxoa7wSRc'
+   end 
+ 
++  def get_trends
++    @trends = Twitter.trends(US_WOEID).map{ |trend| URI.decode(trend.query) } 
++  end
++
+   #Search tweets matching keywords but excluding forbidden words
+   #matching language and location
+   def get_tweets keywords, excluded, language, latitude, longitude, radius, distance

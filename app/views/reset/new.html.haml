@@ -1,0 +1,33 @@
+%h2.text-center 
+  Forgot Your Password?
+%h3.text-center
+  No problem! We'll email you a way to reset it.
+.user-message#user-message-error{ style: "display:none;" }
+  %ul
+    %li.messages.user-error
+      %p
+        Please review your form for issues and re-submit.
+= if params[:success]
+  .user-message.text-center#user-message-success
+    %ul
+      %li.messages.user-success
+        %p
+          A password reset email has been sent to your email address.
+%form.container.text-center
+  %br
+  %input#email.required_field.text-center{ type: "text", placeholder: "Email Address" }
+  %ul.errorlist#email_errorlist{ style: "display:none;" }
+    %li 
+      Please enter your email.
+  %ul.errorlist#email_exists_errorlist{ style: "display:none;" }
+    %li 
+      No account with that email address exists.
+  %br
+  %input#submit.text-center.btn.btn-primary{ type: "button", value: "Send Reset"}
+:javascript
+  $(document).ready(function(){
+    function formSubmit(){
+      TweetStreamPasswordReset.submit();
+    }
+    $('input#submit').on('click', formSubmit);
+  });

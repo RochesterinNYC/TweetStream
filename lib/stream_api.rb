@@ -1,0 +1,120 @@
+require 'twitter'
+
+class TweetStreamAPI
+
+  #These are the twitter credentials for the app registered
+  #with 1337scriptdaddy@gmail.com
+  @@tweet_array = Array.new
+  @@keywords = ""
+  @@term1 = ""
+  @@since_id
+
+
+
+  #Search tweets matching keywords but excluding forbidden words
+  #matching language and location
+  def get_tweets keywords, excluded, language, latitude, longitude, radius, distance
+
+    @client = Twitter::REST::Client.new do |config|
+      config.consumer_key        = ENV["TWITTER_CONSUMER_KEY"]
+      config.consumer_secret     = ENV["TWITTER_CONSUMER_SECRET"]
+      config.oauth_token        = ENV["TWITTER_ACCESS_TOKEN"]
+      config.oauth_token_secret = ENV["TWITTER_ACCESS_SECRET"]
+    end
+    #Return an empty array if search terms are empty
+    if (nil_or_blank keywords)
+      return Array.new
+    end
+
+    #If search terms changed
+    if (@@keywords != keywords)
+      @@keywords = keywords
+
+      #reset array
+      @@tweet_array = Array.new
+    end
+
+    #When any of the location parameters is blank
+    #Search 100 most recent tweets using the Twitter API, first filtering by keywords
+    if (nil_or_blank latitude or nil_or_blank longitude or nil_or_blank radius or nil_or_blank distance)
+      results = @client.search(keywords, :lang => language, :count => 100, :result_type => "recent")
+      results.reverse_each.map do |status|
+      #Push tweet objects if keywords match, if they are not already pushed, and if they don't include
+      #excluded terms
+        if ((verify_terms keywords, status) and not (already_exist status) and not (contains_excluded_terms excluded, status))
+           mark_terms keywords, status
+           @@tweet_array.push status
+        end
+      end
+    else
+    #When location parameters are all present
+    #Search 100 most recent tweets using the Twitter API, first filtering by keywords, language and location
+      results = @client.search(keywords, :lang => language, :count => 100, :result_type => "recent",
+            :geocode => "#{latitude},#{longitude},#{radius}#{distance}")
+      results.reverse_each.map do |status|
+        if ((verify_terms keywords, status) and not (already_exist status) and not (contains_excluded_terms excluded, status))
+           mark_terms keywords, status
+           @@tweet_array.push status
+        end
+      end
+    end
+    return @@tweet_array
+  end
+
+  #Ensure that a tweet doesn't already exist in the tweet_array from previous search results
+  def already_exist status
+    @@tweet_array.each do |tweet|
+      if (tweet.id == status.id)
+        return true
+      end
+    end
+    return false
+  end
+
+  #Verify that tweets returned by Twitter Search API actually include the search terms
+  #Twitter Search API returns results it thinks are relevant but not include the search terms
+  def verify_terms search_term, status
+    split_terms = search_term.split(' ')
+    split_terms.each do |term|
+      unless status.text.downcase.include? term.downcase
+        return false
+      end
+    end
+    return true
+  end
+
+  #Helper function to determine whether tweet contains excluded word
+  def contains_excluded_terms excluded, status
+    split_terms = excluded.split(' ')
+    split_terms.each do |term|
+      if status.text.downcase.include? term.downcase
+        #puts "#{status.text}"
+        return true
+      end
+    end
+    return false
+  end
+
+  #Highlight search terms in the statuses
+  def mark_terms search_term, status
+    split_terms = search_term.split(' ')
+    split_terms.each do |term|
+      unless term == nil or term == ""
+        #status.text.gsub! /#{term}/i, "<mark>#{term}</mark>"
+      end
+    end
+  end
+
+  #Helper function to check whether a term is nil or blank
+  def nil_or_blank term
+    (term.nil? or term.blank?) ? true : false
+  end
+
+  #Create JSON objects for front-end
+  def jsonify_tweet status
+    url = "https://twitter.com/#{status.user.handle}/statuses/#{status.id}"
+    time = status.created_at.to_i
+    Hash[text: status.text, name: status.user.name, handle: status.user.handle, url: url, time: time, image: status.user.profile_image_url]
+  end
+
+end

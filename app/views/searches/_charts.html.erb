@@ -1,0 +1,193 @@
+<section class="scrollable wrapper">
+  <div class="tab-content">
+    <div class="tab-pane active" id="morris">
+      <div class="row">
+        <div class="col-lg-8">
+          <section class="panel bg-light">
+            <header class="panel-heading bg-dark">
+              <h1 class="panel-title">THE APPROVAL MATRIX</h1>
+            </header>
+            <div id="chart_wrapper">
+              <div id="chart"></div>
+            </div>
+          </section>
+        </div>
+        <div class="col-lg-4">
+           <section class="panel bg-info no-borders">
+            <div class="row">
+              <% percent = 100.0 * @tweets.size / Tweet.all.count %>
+              <div class="col-xs-6">
+                <div class="wrapper">
+                  <p>Tweets Analyzed</p>
+                  <p class="h2 font-bold"><%= @tweets.size %></p>
+                  <div class="progress progress-xs progress-striped active m-b-sm">
+                    <div class="progress-bar progress-bar-warning" data-toggle="tooltip" data-original-title="<%= percent if percent %>" style="width: <%= percent if percent %>"></div>
+                  </div>
+                  <div class="text-sm">of <span class="italic bold"><%= Tweet.all.count %></span> tweets in the database</div>
+                </div>
+              </div>
+
+              <div class="col-xs-6 wrapper text-center">
+                <div class="inline m-t-sm">
+                  <div class="easypiechart easyPieChart" data-percent="<%= percent %>" data-line-width="8" data-bar-color="#ffffff" data-track-color="#c79d43" data-scale-color="false" data-size="100" style="width: 100px; height: 100px; line-height: 100px;">
+                    <span class="h2"><%= percent if percent %></span>%
+                  <canvas width="100" height="100"></canvas></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+            <section class="panel bg-light">
+              <header class="panel-heading bg-info">
+                Top 10 Words in these Tweets
+              </header>
+              <%= content_tag :div, "", id: "words-donut", data: {words: @tweet_analyzer.word_labels}, class: "graph" %>
+            </section>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <section class="panel">
+            <header class="panel-heading">
+              Reprehensibility Score
+            </header>
+            <div class="panel-body text-center">
+              <h4><%= @tweet_analyzer.reprehensibility %><small> /10</small></h4>
+              <small class="text-muted block">Updated at 2 minutes ago</small>
+              <div class="inline">
+                <div class="easypiechart" data-percent="<%= @tweet_analyzer.reprehensibility * 100 %>" data-line-width="16" data-loop="false" data-size="188">
+                  <span class="h2"><%= @tweet_analyzer.reprehensibility * 100 %></span>%
+                  <div class="easypie-text"><button class="btn btn-link m-t-n-sm" data-toggle="class:pie"><i class="icon-play text text-muted"></i><i class="icon-pause text-active text-muted"></i></button></div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer"><small>% of avarage rate of the Conversion</small></div>
+          </section>
+        </div>
+        <div class="col-lg-4">
+          <section class="panel">
+            <header class="panel-heading">
+              Pop Culture Meter
+            </header>
+            <div class="panel-body text-center">
+              <h4><small>last </small>12<small> hrs</small></h4>
+              <small class="text-muted block">yesterday: 20%</small>
+              <div class="inline">
+                <div class="easypiechart" data-percent="<%= @tweet_analyzer.pop_culture_score * 10 %>" data-line-width="6" data-loop="false" data-size="188">
+                  <span class="h2"><%= @tweet_analyzer.pop_culture_score %></span>%
+                  <div class="easypie-text">Today</div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer"><small>% of change</small></div>
+          </section>
+        </div>
+        <div class="col-lg-4">
+          <section class="panel">
+            <header class="panel-heading">
+              Awesomeness
+            </header>
+            <div class="panel-body text-center">
+              <h4><%= @tweet_analyzer.awesomeness %></h4>
+              <small class="text-muted block">How awesome your search was</small>
+              <div class="inline">
+                <div class="easypiechart" data-percent="<%= @tweet_analyzer.awesomeness * 100 %>" data-line-width="30" data-track-color="#eee" data-bar-color="#afcf6f" data-scale-color="#fff" data-loop="false" data-size="188">
+                  <span class="h2"><%= @tweet_analyzer.awesomeness * 100 %></span>%
+                  <div class="easypie-text">yeah, pretty awesome</div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer"><small>% of avarage rate of the visits</small></div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane" id="easy-pie-chart">
+      <div class="col-lg-12">
+        <section class="panel">
+          <header class="panel-heading">
+            Tweet Data
+          </header>
+          <div class="panel-body">
+            <%= render "searches/extra_content" %>
+          </div>
+          <div class="panel-footer"><small>% of avarage rate of the visits</small></div>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+
+// set up our data series with 50 random data points
+
+var seriesData = [ [], [], [] ];
+var random = new Rickshaw.Fixtures.RandomData(150);
+
+for (var i = 0; i < 500; i++) {
+  random.addData(seriesData);
+}
+
+// instantiate our graph!
+
+var graph = new Rickshaw.Graph( {
+  element: document.getElementById("chart"),
+  width: 750,
+  height: 500,
+  renderer: 'scatterplot',
+  min: -10,
+  max: 10,
+  series: [
+    {
+      data: [ { x: -10, y: 0 },
+              { x: 10, y: 0 }
+            ],
+      color: "#ffffff",
+      name: "max and mins"
+    },
+    {
+      color: "#ff9030",
+      data: [ { x: <%= @approval_matrix.despicable_or_brilliant %>, y: <%= @approval_matrix.lowbrow_or_highbrow %> }
+      ],
+      name: "<%= @search.keywords %>"
+    }
+    // {
+    //   color: "#ff9030",
+    //   data: seriesData[0],
+    // }, {
+    //   color: "#ff4040",
+    //   data: seriesData[1],
+    // }
+  ]
+} );
+
+graph.renderer.dotSize = 6;
+
+new Rickshaw.Graph.HoverDetail({ graph: graph });
+
+graph.render();
+
+var ticksTreatment = 'glow';
+
+var xAxis = new Rickshaw.Graph.Axis.X( {
+  graph: graph,
+  ticks: 3,
+  ticksTreatment: ticksTreatment,
+} );
+
+xAxis.render();
+
+var yAxis = new Rickshaw.Graph.Axis.Y( {
+  graph: graph,
+  // tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
+  ticks: 3,
+  ticksTreatment: ticksTreatment
+} );
+
+yAxis.render();
+</script>
+

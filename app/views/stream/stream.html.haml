@@ -1,0 +1,35 @@
+.stream-wrapper
+  .container.text-center
+    #Tweet-Query.text-center
+      Tweet Stream for:
+      %h5
+        #{@keywords}
+    Number of Tweets: 
+    #number-tweets
+      0
+  .tweet-stream.container.text-center
+    %input{type: "hidden", id: "tweet_keywords", name: "keywords", value: "#{@keywords}"}
+    %input{type: "hidden", id: "tweet_exclude", name: "exclude", value: "#{@exclude}"}
+    %input{type: "hidden", id: "tweet_language", name: "language", value: "#{@language}"}
+    %input{type: "hidden", id: "tweet_latitude", name: "latitude", value: "#{@latitude}"}
+    %input{type: "hidden", id: "tweet_longitude", name: "longitude", value: "#{@longitude}"}
+    %input{type: "hidden", id: "tweet_radius", name: "radius", value: "#{@radius}"}
+    %input{type: "hidden", id: "tweet_distance", name: "distance", value: "#{@distance}"}
+    %input{type: "hidden", id: "tweet_numTweets", name: "numTweets", value: 0}
+
+    - 10.times do |index|  
+      %a.tweet.border-inactive.tweet-inactive{lang: "en", href: "", target: "_blank", id: "tweet#{index}"}
+        %img{src: "", id: "tweet#{index}image"}
+        .tweet-info.text-left
+          %span.tweet-username{id: "tweet#{index}name"}
+          %span.tweet-handle{id: "tweet#{index}handle"}
+          %span.tweet-time{id: "tweet#{index}time"}
+        .tweet-text.text-left{id: "tweet#{index}text"}
+
+    :javascript
+      $(window).load(function(){
+        TweetStreamUI.getTweets();
+        var setup = window.setTimeout(function(){TweetStreamUI.getTweets()}, 10);
+        var refresh = window.setInterval(function(){TweetStreamUI.refresh();},2000);
+        var get = window.setInterval(function(){TweetStreamUI.getTweets();},9000);
+      }); 

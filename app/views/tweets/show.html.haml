@@ -1,0 +1,51 @@
+%p#notice= notice
+
+%p
+  %b Tweet created at:
+  = @tweet.tweet_created_at
+%p
+  %b Id str:
+  = @tweet.id_str
+%p
+  %b Text:
+  = @tweet.text
+%p
+  %b Source:
+  = @tweet.source
+%p
+  %b User id str:
+  = @tweet.user_id_str
+%p
+  %b User screen name:
+  = @tweet.user_screen_name
+%p
+  %b User location:
+  = @tweet.user_location
+%p
+  %b User description:
+  = @tweet.user_description
+%p
+  %b User url:
+  = @tweet.user_url
+%p
+  %b User followers count:
+  = @tweet.user_followers_count
+%p
+  %b User friends count:
+  = @tweet.user_friends_count
+%p
+  %b User profile image url:
+  = @tweet.user_profile_image_url
+%p
+  %b Geo:
+  = @tweet.geo
+%p
+  %b Coordinates:
+  = @tweet.coordinates
+%p
+  %b Place:
+  = @tweet.place
+
+= link_to 'Edit', edit_tweet_path(@tweet)
+\|
+= link_to 'Back', tweets_path

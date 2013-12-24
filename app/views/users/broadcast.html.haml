@@ -1,0 +1,14 @@
+%h3.text-center
+  Broadcast Message
+= if params[:broadcasted_out]
+  %h3.text-center
+    Your broadcast was sent to all users.
+%form.container.text-center{ action: "broadcast_out", method: "post" }
+  %input{:type=>"hidden", :name=>"authenticity_token", :value=>form_authenticity_token.to_s}
+  %input#broadcast{ type: "text", name: "broadcast"}
+    .actions
+      %br
+      %input.btn.btn-primary{ name: "commit", type: "submit", value: "Broadcast" }
+      %br
+  .text-center
+    = link_to "Back", users_edit_path

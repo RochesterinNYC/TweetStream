@@ -1,0 +1,93 @@
+%p#notice= notice
+%div.end
+  %p
+    %b Keywords:
+    = @search.keywords
+  %p
+    %b Latitude:
+    = @search.latitude
+  %p
+    %b Longitude:
+    = @search.longitude
+  %p
+    %b Radius:
+    = @search.radius
+  %p
+    %b Results summary:
+    = @search.results_summary
+  - @search.tweets.each do |tweet|
+    %p
+      = tweet.user_id
+    %p
+      search_id
+      = tweet.search_id
+    %p
+      = tweet.tweet_created_at
+    %p
+      = tweet.id_str
+    %p
+      = tweet.text
+    %p
+      = tweet.source
+    %p
+      = tweet.user_id_str
+    %p
+      = tweet.user_screen_name
+    %p
+      = tweet.user_location
+    %p
+      = tweet.user_description
+    %p
+      = tweet.user_url
+    %p
+      = tweet.user_followers_count
+    %p
+      = tweet.user_friends_count
+    %p
+      = tweet.user_profile_image_url
+    %p
+      = tweet.longitude
+    %p
+      = tweet.latitude
+    %p
+      = tweet.raw_text
+
+  = link_to 'Edit', edit_search_path(@search)
+  \|
+  = link_to 'Back', searches_path
+
+  %ul#tweets
+    - @tweets.each do |tweet|
+      %li.tweet= tweet.text
+
+  %h2
+    Approval Matrix
+  %p
+    brilliant or despicable:
+    = @approval_matrix.despicable_or_brilliant
+  %p
+    low or high brow
+    = @approval_matrix.lowbrow_or_highbrow
+  %p
+    low brow:
+    = @approval_matrix.taste_scale
+
+  %h2
+    Tweet Analysis
+  %p
+    awesomeness
+    = @tweet_analyzer.awesomeness
+  %p
+    reprehensibility
+    = @tweet_analyzer.reprehensibility
+  %p
+    pop meter:
+    = @tweet_analyzer.pop_culture_score
+  %ul#top_10
+    - @tweet_analyzer.top_10_list.each do |top_word|
+      %b
+        Word:
+        = top_word[0]
+      %p
+        Frequency:
+        = top_word[1]

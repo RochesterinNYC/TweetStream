@@ -1,0 +1,24 @@
+%aside#nav.bg-dark.aside-sm
+  %section.vbox
+    = render 'layouts/app_title'
+    %section
+      = render 'layouts/user_nav'
+      %nav.nav-primary.hidden-xs
+        %ul.nav
+          %li.active
+            %a{href: "#{new_search_path}"}
+              %i.icon-eye-open
+              %span Search
+          %li
+            %a{href: "#{dashboard_path}"}
+              %i.icon-eye-open
+              %span Stream
+      .bg-danger.wrapper.hidden-vertical.animated.fadeInUp.text-sm
+        %a.pull-right.m-r-n-sm.m-t-n-sm{"data-dismiss" => "alert", href: "#"}
+          %i.icon-close.icon-remove
+        TweetStream, a scalable tweet analyzer.
+    %footer.footer.bg-gradient.hidden-xs
+      %a.btn.btn-sm.btn-link.m-r-n-xs.pull-right{"data-toggle" => "ajaxModal", href: "modal.lockme.html"}
+        %i.icon-off
+      %a.btn.btn-sm.btn-link.m-l-n-sm{"data-toggle" => "class:nav-vertical", href: "#nav"}
+        %i.icon-reorder

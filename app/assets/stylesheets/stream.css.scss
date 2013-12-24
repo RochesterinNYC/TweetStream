@@ -1,0 +1,82 @@
+// Place all the styles related to the stream controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#number-tweets{
+	font-weight: bold;
+}
+
+.tweet-stream{
+  a.tweet {
+    font-family: "Proxima Nova", Arial,sans-serif;
+    border: solid;
+    border-radius: 5px;
+    margin: 20px 10px 0 10px;
+    padding-right: 5px;
+    width: 525px;
+    max-height: 75px;
+    float:left;
+    font-size: 12px;
+    &:hover {
+      .tweet-info{
+        .tweet-username{
+          color: white;
+        }
+        .tweet-handle{
+        	color: white;
+        }
+      }
+      color: white;
+      background-color: #55ACEE;
+      text-decoration: none;
+    }
+    img {
+      display: block;
+      float: left;
+      width: 64px;
+      height: 64px;
+      padding: 5px 10px 5px 5px;
+    }
+    .tweet-info{
+    	padding: 7px 5px 5px 0;
+    	.tweet-time{
+        font-size: 0.8em;
+        float: right;
+        padding-right: 5px;
+      }
+      .tweet-username{
+        color: #66757f;
+      }
+      .tweet-handle{
+        color: #292f44;
+      }
+    }
+  }
+  .tweet-inactive{
+    display: none;
+  }
+  .tweet-active{
+    display: block;
+  }
+}
+div.leftCol {
+  width:20%;
+  float:left;
+}
+
+div.rightCol {
+  width:80%;
+  float:right;
+}
+
+div.tweets {
+  width:100%;
+  clear:both;
+}
+#map {
+  width: 800px;
+  height: 400px;
+  float: right;
+  margin: 25px 75px 0 0;
+}
+.gmnoprint img { max-width: none; }

@@ -1,0 +1,47 @@
+%h1 Listing tweets
+
+%table
+  %tr
+    %th Tweet created at
+    %th Id str
+    %th Text
+    %th Source
+    %th User id str
+    %th User screen name
+    %th User location
+    %th User description
+    %th User url
+    %th User followers count
+    %th User friends count
+    %th User profile image url
+    %th Geo
+    %th Coordinates
+    %th Place
+    %th
+    %th
+    %th
+
+  - @tweets.each do |tweet|
+    %tr
+      %td= tweet.tweet_created_at
+      %td= tweet.id_str
+      %td= tweet.text
+      %td= tweet.source
+      %td= tweet.user_id_str
+      %td= tweet.user_screen_name
+      %td= tweet.user_location
+      %td= tweet.user_description
+      %td= tweet.user_url
+      %td= tweet.user_followers_count
+      %td= tweet.user_friends_count
+      %td= tweet.user_profile_image_url
+      %td= tweet.geo
+      %td= tweet.coordinates
+      %td= tweet.place
+      %td= link_to 'Show', tweet
+      %td= link_to 'Edit', edit_tweet_path(tweet)
+      %td= link_to 'Destroy', tweet, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Tweet', new_tweet_path

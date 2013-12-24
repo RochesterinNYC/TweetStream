@@ -1,0 +1,3 @@
+class SearchResults
+
+end

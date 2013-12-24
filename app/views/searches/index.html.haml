@@ -1,0 +1,27 @@
+%h1 Listing searches
+
+%table
+  %tr
+    %th Keywords
+    %th Latitude
+    %th Longitude
+    %th Radius
+    %th Results summary
+    %th
+    %th
+    %th
+
+  - @searches.each do |search|
+    %tr
+      %td= search.keywords
+      %td= search.latitude
+      %td= search.longitude
+      %td= search.radius
+      %td= search.results_summary
+      %td= link_to 'Show', search
+      %td= link_to 'Edit', edit_search_path(search)
+      %td= link_to 'Destroy', search, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Search', new_search_path

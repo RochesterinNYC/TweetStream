@@ -1,0 +1,9 @@
+%h1.text-center Sign Up
+= if params[:success]
+  .user-message.text-center#user-message-success
+    %ul
+      %li.messages.user-success
+        %p
+          Your user account has been created! A confirmation email has been sent.
+
+= render 'form'

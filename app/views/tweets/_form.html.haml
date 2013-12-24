@@ -1,0 +1,55 @@
+= form_for @tweet do |f|
+  - if @tweet.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@tweet.errors.count, "error")} prohibited this tweet from being saved:"
+      %ul
+        - @tweet.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :tweet_created_at
+    = f.datetime_select :tweet_created_at
+  .field
+    = f.label :id_str
+    = f.text_field :id_str
+  .field
+    = f.label :text
+    = f.text_field :text
+  .field
+    = f.label :source
+    = f.text_field :source
+  .field
+    = f.label :user_id_str
+    = f.text_field :user_id_str
+  .field
+    = f.label :user_screen_name
+    = f.text_field :user_screen_name
+  .field
+    = f.label :user_location
+    = f.text_field :user_location
+  .field
+    = f.label :user_description
+    = f.text_field :user_description
+  .field
+    = f.label :user_url
+    = f.text_field :user_url
+  .field
+    = f.label :user_followers_count
+    = f.number_field :user_followers_count
+  .field
+    = f.label :user_friends_count
+    = f.text_field :user_friends_count
+  .field
+    = f.label :user_profile_image_url
+    = f.text_field :user_profile_image_url
+  .field
+    = f.label :geo
+    = f.text_field :geo
+  .field
+    = f.label :coordinates
+    = f.text_field :coordinates
+  .field
+    = f.label :place
+    = f.text_field :place
+  .actions
+    = f.submit 'Save'

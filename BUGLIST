@@ -1,0 +1,2 @@
+Clicking search redirects to "/searches/new" it should go to /dashboard
+Map does not load on going "back" from the stream

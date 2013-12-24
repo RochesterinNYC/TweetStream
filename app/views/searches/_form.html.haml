@@ -1,0 +1,31 @@
+%div.row
+  %div.col-md-4.col-md-offset-4
+    %div.panel
+      %div.panel-heading
+        Search
+      %div.panel-body
+        = form_for @search do |f|
+          - if @search.errors.any?
+            #error_explanation
+              %h2= "#{pluralize(@search.errors.count, "error")} prohibited this search from being saved:"
+              %ul
+                - @search.errors.full_messages.each do |msg|
+                  %li= msg
+
+          .form-group
+            = f.label :keywords
+            = f.text_field :keywords
+          / .form-group
+          /   = f.label :latitude
+          /   = f.text_field :latitude
+          / .form-group
+          /   = f.label :longitude
+          /   = f.text_field :longitude
+          / .form-group
+          /   = f.label :radius
+          /   = f.text_field :radius
+          / .form-group
+          /   = f.label :results_summary
+          /   = f.text_field :results_summary
+          .actions
+            = f.submit 'Search'

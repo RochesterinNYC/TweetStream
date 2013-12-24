@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.twitter.com/1.1/search/tweets.json?include_entities=true&lang=en&q=%23MyString
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Twitter Ruby Gem 5.0.0
+      Authorization:
+      - OAuth oauth_consumer_key="hIl8qNe1VqxKJuxHhWoA", oauth_nonce="0f1027e3d2824ab833be43f66fed8ef7",
+        oauth_signature="Qo5kcb29tGmiSfuzgJnukLqMEwU%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386100222", oauth_token="1944743442-3pV23TQz68mT0GeyoINA6HDwRoe78UvWwLRLWuY",
+        oauth_version="1.0"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+      Content-Length:
+      - '203'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Tue, 03 Dec 2013 19:50:23 GMT
+      Expires:
+      - Tue, 31 Mar 1981 05:00:00 GMT
+      Last-Modified:
+      - Tue, 03 Dec 2013 19:50:23 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - tfe
+      Set-Cookie:
+      - guest_id=v1%3A138610022313472789; Domain=.twitter.com; Path=/; Expires=Thu,
+        03-Dec-2015 19:50:23 UTC
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=631138519
+      X-Access-Level:
+      - read-write
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Rate-Limit-Limit:
+      - '180'
+      X-Rate-Limit-Remaining:
+      - '179'
+      X-Rate-Limit-Reset:
+      - '1386101123'
+      X-Transaction:
+      - 4dee56f800518734
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: UTF-8
+      string: '{"statuses":[],"search_metadata":{"completed_in":0.033,"max_id":407959953446801409,"max_id_str":"407959953446801409","query":"%23MyString","refresh_url":"?since_id=407959953446801409&q=%23MyString&lang=en&include_entities=1","count":15,"since_id":0,"since_id_str":"0"}}'
+    http_version: 
+  recorded_at: Tue, 03 Dec 2013 19:50:23 GMT
+recorded_with: VCR 2.8.0

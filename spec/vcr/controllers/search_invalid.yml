@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.twitter.com/1.1/search/tweets.json?include_entities=true&lang=en&q=%23invalid%20value
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Twitter Ruby Gem 5.0.0
+      Authorization:
+      - OAuth oauth_consumer_key="hIl8qNe1VqxKJuxHhWoA", oauth_nonce="07b928f0105e6f58bf87ead9f994855f",
+        oauth_signature="oPz%2Bz9V%2BZ2%2FQdWqbIacaLGmcEV0%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386100295", oauth_token="1944743442-3pV23TQz68mT0GeyoINA6HDwRoe78UvWwLRLWuY",
+        oauth_version="1.0"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+      Content-Length:
+      - '205'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Tue, 03 Dec 2013 19:51:36 GMT
+      Expires:
+      - Tue, 31 Mar 1981 05:00:00 GMT
+      Last-Modified:
+      - Tue, 03 Dec 2013 19:51:36 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - tfe
+      Set-Cookie:
+      - guest_id=v1%3A138610029656749391; Domain=.twitter.com; Path=/; Expires=Thu,
+        03-Dec-2015 19:51:36 UTC
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=631138519
+      X-Access-Level:
+      - read-write
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Rate-Limit-Limit:
+      - '180'
+      X-Rate-Limit-Remaining:
+      - '178'
+      X-Rate-Limit-Reset:
+      - '1386101123'
+      X-Transaction:
+      - bc2b910d6a7ea5be
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: UTF-8
+      string: '{"statuses":[],"search_metadata":{"completed_in":0.026,"max_id":407960265049640960,"max_id_str":"407960265049640960","query":"%23invalid+value","refresh_url":"?since_id=407960265049640960&q=%23invalid%20value&lang=en&include_entities=1","count":15,"since_id":0,"since_id_str":"0"}}'
+    http_version: 
+  recorded_at: Tue, 03 Dec 2013 19:51:36 GMT
+recorded_with: VCR 2.8.0

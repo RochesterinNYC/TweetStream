@@ -1,0 +1,38 @@
+.lter.nav-user.hidden-xs.pos-rlt
+  .nav-avatar.pos-rlt
+    %a.thumb-sm.avatar.animated.rollIn{"data-toggle" => "dropdown", href: "#"}
+      - if current_user
+        %img{alt: "user_profile_image", src: "#{current_user.profile_image_url}"}
+        %span.caret.caret-white
+    %ul.dropdown-menu.m-t-sm.animated.fadeInLeft
+      %span.arrow.top
+      - if current_user
+        %li
+          %a{href: "#"} Settings
+        %li
+          = link_to "Profile", edit_user_path(current_user), :method => :get
+      %li
+        - if current_user && current_user.admin?
+          = link_to "Broadcast", users_broadcast_path, :method => :get, class: "btn header_button"
+      %li
+        - if current_user && !new_broadcasts.blank?
+          %a{href: "#"}
+            %span.badge.bg-danger.pull-right
+              = new_broadcasts.length || 0
+            Notifications
+      %li.divider
+      %li
+        %a{href: "#"} Help
+      %li
+        - if current_user
+          = link_to "Logout", logout_path, :method => :destroy, id: 'logout'
+        - else
+          = link_to "Sign Up", signup_path, :method => :get, class: "btn header_button"
+          = link_to "Sign In", sessions_path, :method => :post, class: "btn header_button"
+    .visible-xs.m-t.m-b
+      - if current_user
+        %a.h3{href: "#"} current_user.name
+      %p
+        %i.icon-map-marker
+        = current_user.location if defined? current_user.location
+  = render :partial => 'layouts/user_messages'
