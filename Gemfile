@@ -32,9 +32,9 @@ gem 'rickshaw_rails'                # graphing with scatter plots
 gem 'jbuilder', '~> 1.2'
 
 gem 'mailcatcher'
-gem 'sqlite3'
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'capybara', '2.2.0'
   gem 'shoulda-matchers'
@@ -68,7 +68,7 @@ group :test do
 end
 
 group :production do
-  #gem 'pg'												# Use postgresql as the database for Active Record
+  gem 'pg'												# Use postgresql as the database for Active Record
   gem 'rails_12factor', '0.0.2'
 end
 
