@@ -32,9 +32,9 @@ gem 'rickshaw_rails'                # graphing with scatter plots
 gem 'jbuilder', '~> 1.2'
 
 gem 'mailcatcher'
+gem 'sqlite3'
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'capybara', '2.2.0'
   gem 'shoulda-matchers'
