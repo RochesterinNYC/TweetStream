@@ -17,5 +17,6 @@
 //= require charts/morris/raphael-min
 //= require charts/morris/morris.min
 //= require rickshaw_with_d3
+//= require stream
 //= require_self
 //= require_tree .
