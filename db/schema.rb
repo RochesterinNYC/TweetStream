@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20131211201153) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "broadcast_messages", force: true do |t|
     t.string   "message"
     t.integer  "admin_id"
@@ -57,8 +60,8 @@ ActiveRecord::Schema.define(version: 20131211201153) do
     t.integer  "search_id"
   end
 
-  add_index "tweets", ["search_id"], name: "index_tweets_on_search_id"
-  add_index "tweets", ["user_id"], name: "index_tweets_on_user_id"
+  add_index "tweets", ["search_id"], name: "index_tweets_on_search_id", using: :btree
+  add_index "tweets", ["user_id"], name: "index_tweets_on_user_id", using: :btree
 
   create_table "user_profiles", force: true do |t|
     t.integer  "twitter_id"

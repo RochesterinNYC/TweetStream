@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Sixmapp::Application.load_tasks
+TweetStream::Application.load_tasks

@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Sixmapp::Application.config.secret_key_base = 'f2c247f2cdd1c97bd7711605c38a76c9cf606b39680319000c4a0d357db6843055c522b4ebaabb331bc44555356eec69217cb4835c4903c6edad865bc7cb4857'
+TweetStream::Application.config.secret_key_base = 'f2c247f2cdd1c97bd7711605c38a76c9cf606b39680319000c4a0d357db6843055c522b4ebaabb331bc44555356eec69217cb4835c4903c6edad865bc7cb4857'

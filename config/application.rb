@@ -11,7 +11,7 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
-module Sixmapp
+module TweetStream
   class Application < Rails::Application
     config.admin_email = 'TweetStream! <jamesrrwen@gmail.com>'
     config.salt = Digest::SHA1.hexdigest("TweetStream")

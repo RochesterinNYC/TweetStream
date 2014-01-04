@@ -1,4 +1,4 @@
-Sixmapp::Application.routes.draw do
+TweetStream::Application.routes.draw do
 
   resources :tweets
   resources :user_profiles

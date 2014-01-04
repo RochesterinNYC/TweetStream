@@ -2,17 +2,13 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 gem 'rails', '4.0.0'								# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 
-# JEFFREY'S GEMS
 # gem 'tweetstream', '2.6.0'
 gem 'puma'                          # note to comment out unicorn when using puma
 gem 'twitter', '5.0.0'
 
-# END JEFFREY'S GEMS
-
 # OAUTH AUTHENTICATION GEMS
 gem 'omniauth'
 gem 'omniauth-twitter'
-
 
 # gem 'twitter-bootstrap-rails'
 gem 'haml'
@@ -32,9 +28,8 @@ gem 'rickshaw_rails'                # graphing with scatter plots
 gem 'jbuilder', '~> 1.2'
 
 gem 'mailcatcher'
-
+gem 'pg'
 group :development, :test do
-  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'capybara', '2.2.0'
   gem 'shoulda-matchers'
@@ -63,12 +58,9 @@ group :test do
   gem 'vcr'                       # record test suite http interactions for playback in future tests
   gem 'webmock'                   # lib for stubbing and setting expectation on HTTP requests
   gem 'launchy'
-  gem 'libnotify' if /linux/ =~ RUBY_PLATFORM
-  gem 'growl' if /darwin/ =~ RUBY_PLATFORM
 end
 
 group :production do
-  gem 'pg'												# Use postgresql as the database for Active Record
   gem 'rails_12factor', '0.0.2'
 end
 
