@@ -6,13 +6,15 @@
     = javascript_include_tag "map.js"
     #map
   / search
-  .leftCol
+  .leftCol{style:"text-align:left;"}
     %h2 Tweets About ...
     %div
       = label_tag(:q, "keywords:")
+      %br
       = text_field_tag(:keywords)
     %div
       = label_tag(:q, "exclude:")
+      %br
       = text_field_tag(:exclude)
     %div
       = label_tag(:q, "language:")
@@ -21,21 +23,32 @@
         %option{value: "es"} Spanish
     %div
       = label_tag(:q, "latitude:")
+      %br
       = text_field_tag(:latitude)
+      %br
       = label_tag(:q, "longitude:")
+      %br
       = text_field_tag(:longitude)
+      %br
       = label_tag(:q, "radius:")
+      %br
       = text_field_tag(:radius)
     %div
       %input{checked: "checked", name: "distance", type: "radio", value: "mi"}>/
       mile
       = succeed "km" do
         %input{name: "distance", type: "radio", value: "km"}/
-    %br/
+    %br
     %div
       = submit_tag("Search", class: 'btn btn-primary')
     %div
       = @error
     %div
-      
+  :javascript
+    window.onload = function() {
+      if(!window.location.hash) {
+          window.location = window.location + '#loaded';
+          window.location.reload();
+      }
+    };
 %br/

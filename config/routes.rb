@@ -9,7 +9,7 @@ TweetStream::Application.routes.draw do
   # match '/auth/twitter' => redirect('/auth/twitter'), as: :login, :via => [:all]
   match '/logout' => 'sessions#destroy', :as => :logout, :via => [:delete, :get]
   get "/dashboard" => 'stream#index', :as => 'dashboard'
-  root :to => 'site#index'
+  root :to => 'stream#index'
 
   post '/validate' => 'stream#validate', :as => 'validate'
   get "/stream" => 'stream#stream', :as => 'stream'

@@ -29,7 +29,7 @@
     :javascript
       $(window).load(function(){
         TweetStreamUI.getTweets();
-        var setup = window.setTimeout(function(){TweetStreamUI.getTweets()}, 10);
+        TweetStreamUI.refreshTweetArray();
         var refresh = window.setInterval(function(){TweetStreamUI.refresh();},2000);
         var get = window.setInterval(function(){TweetStreamUI.getTweets();},9000);
       }); 

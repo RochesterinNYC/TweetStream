@@ -49,6 +49,8 @@ TweetStreamUI.renderTweets = () ->
     TweetStreamUI.renderTweet(x)
 
 TweetStreamUI.renderTweet = (index) ->
+  if !TweetArray[index]?
+    TweetStreamUI.getTweets()
   $('#tweet' + index + 'image').attr("src", TweetArray[index]["image"])
   $('#tweet' + index + 'name').html(TweetArray[index]["name"])
   $('#tweet' + index + 'handle').html("@" + TweetArray[index]["handle"])
