@@ -9,8 +9,6 @@ class TweetStreamAPI
   @@term1 = ""
   @@since_id
 
-
-
   #Search tweets matching keywords but excluding forbidden words
   #matching language and location
   def get_tweets keywords, excluded, language, latitude, longitude, radius, distance

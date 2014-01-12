@@ -25,7 +25,7 @@ class StreamController < ApplicationController
     #and array of 5 million....
     #we shouldn't allow more than we need we need to
     #check this first before we start doing loops on
-    #the arra
+    #the array
     if params.size > 12
       puts "SOMETHING IS UP"
       @@warning = "please click search and try again"
@@ -40,7 +40,6 @@ class StreamController < ApplicationController
     end
 
     #is it just me or should this sanitizing code go somewhere else?
-    # - Jeffrey Scholz
     if params[:keywords].length > 255
       @@warning = "input too long!"
     end
