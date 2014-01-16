@@ -6,6 +6,8 @@ gem 'rails', '4.0.0'								# Bundle edge Rails instead: gem 'rails', github: 'r
 gem 'puma'                          # note to comment out unicorn when using puma
 gem 'twitter', '5.0.0'
 
+gem 'google-analytics-rails'
+
 # OAUTH AUTHENTICATION GEMS
 gem 'omniauth'
 gem 'omniauth-twitter'
