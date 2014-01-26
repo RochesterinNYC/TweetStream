@@ -9,7 +9,7 @@ The complete parameters include:
 * language - the language that screened tweets must be in
 * latitude, longitude, radius - geolocal data for screening by location
 
-![TweetStream Search](http://s3.amazonaws.com/jamesrwen/app/public/projects/tweetstream/tweetstreamsearch_original.png?1389849771 "TweetStream Nets vs. Heat Search")
+![TweetStream Search](http://s3.amazonaws.com/jamesrwen/app/public/uploads/tweetstreamsearch_original.png?1390771649 "TweetStream Nets vs. Heat Search")
 
 Our service then counts the number of tweets that match the user inputted criteria and streams up to 10 of the latest matched tweets.
 
@@ -30,8 +30,7 @@ The application is designed with these features in mind:
 ---
 ###Demo
 For best results, streams should be created using keywords that are popular or pertain to some recent event or Twitter trend. 
-
-
+<br/><br/>
 For example, on January 10th, 2014, during the end of the Nets vs. Heat basketball game, Norris Cole of the Heat tied the game up with 3.3s left to ensure double overtime. Twitter was flooded with tweets about overtime:
 <br/><br/>
-![TweetStream Demo](http://s3.amazonaws.com/jamesrwen/app/public/projects/tweetstream/tweetstreamnets_original.png?1389849772 "TweetStream Nets vs. Heat Demo")
+![TweetStream Demo](http://s3.amazonaws.com/jamesrwen/app/public/uploads/tweetstreamnets_original.png?1390771639 "TweetStream Nets vs. Heat Demo")
